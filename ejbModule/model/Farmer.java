@@ -29,7 +29,7 @@ public class Farmer implements Serializable {
 	@OneToMany(mappedBy="farmer")
 	private List<Agronomistreport> agronomistreports;
 
-	//bi-directional one-to-one association to Usr
+	//bi-directional one-to-one association to Usr.
 	@OneToOne
 	@PrimaryKeyJoinColumn(name="email")
 	private Usr usr;
