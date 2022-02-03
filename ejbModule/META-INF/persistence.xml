@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="DreamEJB">
+		<jta-data-source>dreamdbsource</jta-data-source>
+		<class>model.Agronomistreport</class>
+		<class>model.Farmer</class>
+		<class>model.Fertilizer</class>
+		<class>model.Field</class>
+		<class>model.Help</class>
+		<class>model.HelpPK</class>
+		<class>model.Incentive</class>
+		<class>model.Notification</class>
+		<class>model.Policymaker</class>
+		<class>model.Production</class>
+		<class>model.Ranking</class>
+		<class>model.Suggestionproduct</class>
+		<class>model.Usr</class>
+	</persistence-unit>
+</persistence>
