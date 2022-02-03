@@ -12,7 +12,6 @@ import java.util.List;
 @Entity
 @NamedQuery(name="Field.findAll", query="SELECT f FROM Field f")
 @NamedQuery(name="Field.getField", query = "SELECT f FROM Field f WHERE f.location = ?1")
-
 public class Field implements Serializable {
 	private static final long serialVersionUID = 1L;
 

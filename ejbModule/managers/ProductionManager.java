@@ -25,5 +25,18 @@ public class ProductionManager {
 		pList = em.createNamedQuery("Production.getAll", Production.class).setParameter(1, field).getResultList();
 		return pList; 
 	}
-	
+
+	public Production getProduction(int idProduction) throws CredentialsException, NonUniqueResultException {
+    	List<Production> pList = null;
+		try {
+			pList = em.createNamedQuery("Production.getProduction", Production.class).setParameter(1, idProduction).getResultList();
+			} catch (PersistenceException e) {
+			throw new CredentialsException("Could not find the production");
+		}
+		if (pList.isEmpty())
+			return null;
+		else if (pList.size() == 1)
+			return pList.get(0);
+		throw new NonUniqueResultException("More than one production with same idproduction");
+    }
 }

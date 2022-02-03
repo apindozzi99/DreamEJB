@@ -22,6 +22,8 @@ public class Agronomistreport implements Serializable {
 
 	private String details;
 
+	private float field;
+
 	private String name;
 
 	//bi-directional many-to-one association to Farmer
@@ -54,6 +56,14 @@ public class Agronomistreport implements Serializable {
 
 	public void setDetails(String details) {
 		this.details = details;
+	}
+
+	public float getField() {
+		return this.field;
+	}
+
+	public void setField(float field) {
+		this.field = field;
 	}
 
 	public String getName() {

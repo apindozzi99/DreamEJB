@@ -31,8 +31,7 @@ public class Farmer implements Serializable {
 
 	//bi-directional one-to-one association to Usr
 	@OneToOne
-	@PrimaryKeyJoinColumn
-	(name="email")
+	@PrimaryKeyJoinColumn(name="email")
 	private Usr usr;
 
 	//bi-directional many-to-one association to Field
@@ -43,8 +42,8 @@ public class Farmer implements Serializable {
 	@OneToMany(mappedBy="farmer")
 	private List<Help> helps;
 
-	//bi-directional many-to-many association to Notification
-	@ManyToMany(mappedBy="farmers")
+	//bi-directional many-to-one association to Notification
+	@OneToMany(mappedBy="farmer")
 	private List<Notification> notifications;
 
 	public Farmer() {
@@ -162,6 +161,20 @@ public class Farmer implements Serializable {
 
 	public void setNotifications(List<Notification> notifications) {
 		this.notifications = notifications;
+	}
+
+	public Notification addNotification(Notification notification) {
+		getNotifications().add(notification);
+		notification.setFarmer(this);
+
+		return notification;
+	}
+
+	public Notification removeNotification(Notification notification) {
+		getNotifications().remove(notification);
+		notification.setFarmer(null);
+
+		return notification;
 	}
 
 }

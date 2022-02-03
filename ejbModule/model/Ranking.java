@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name ="Ranking.findAll", query="SELECT r FROM Ranking r")
+@NamedQuery(name="Ranking.findAll", query="SELECT r FROM Ranking r")
 @NamedQuery(name = "Ranking.getRanking", query= "SELECT r FROM Ranking r where r.product = ?1 order by r.score DESC")
 @NamedQuery(name = "Ranking.getRankingDesc", query= "SELECT r FROM Ranking r where r.product = ?1 order by r.score ASC")
 @NamedQuery(name = "Ranking.getProductList", query = "SELECT DISTINCT r.product FROM Ranking r")

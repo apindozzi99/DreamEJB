@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -19,18 +18,15 @@ public class Notification implements Serializable {
 
 	private String text;
 
-	//bi-directional many-to-many association to Farmer
-	@ManyToMany
-	@JoinTable(
-		name="farmernotification"
-		, joinColumns={
-			@JoinColumn(name="idNotication")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="emailFarmer")
-			}
-		)
-	private List<Farmer> farmers;
+	//bi-directional many-to-one association to Farmer
+	@ManyToOne
+	@JoinColumn(name="receiver")
+	private Farmer farmer;
+
+	//bi-directional many-to-one association to Policymaker
+	@ManyToOne
+	@JoinColumn(name="sender")
+	private Policymaker policymaker;
 
 	//bi-directional many-to-one association to Usr
 	@ManyToOne
@@ -56,12 +52,20 @@ public class Notification implements Serializable {
 		this.text = text;
 	}
 
-	public List<Farmer> getFarmers() {
-		return this.farmers;
+	public Farmer getFarmer() {
+		return this.farmer;
 	}
 
-	public void setFarmers(List<Farmer> farmers) {
-		this.farmers = farmers;
+	public void setFarmer(Farmer farmer) {
+		this.farmer = farmer;
+	}
+
+	public Policymaker getPolicymaker() {
+		return this.policymaker;
+	}
+
+	public void setPolicymaker(Policymaker policymaker) {
+		this.policymaker = policymaker;
 	}
 
 	public Usr getUsr() {

@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Help implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private HelpPK id;
+	@Id
+	private int idhelp;
 
 	private String problem;
 
@@ -31,12 +31,12 @@ public class Help implements Serializable {
 	public Help() {
 	}
 
-	public HelpPK getId() {
-		return this.id;
+	public int getIdhelp() {
+		return this.idhelp;
 	}
 
-	public void setId(HelpPK id) {
-		this.id = id;
+	public void setIdhelp(int idhelp) {
+		this.idhelp = idhelp;
 	}
 
 	public String getProblem() {

@@ -7,7 +7,6 @@
 		<class>model.Fertilizer</class>
 		<class>model.Field</class>
 		<class>model.Help</class>
-		<class>model.HelpPK</class>
 		<class>model.Incentive</class>
 		<class>model.Notification</class>
 		<class>model.Policymaker</class>

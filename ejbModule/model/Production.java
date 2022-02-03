@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @NamedQuery(name="Production.findAll", query="SELECT p FROM Production p")
 @NamedQuery(name= "Production.getAll", query="SELECT p FROM Production p WHERE p.field= ?1")
-
+@NamedQuery(name= "Production.getProduction", query="SELECT p FROM Production p where p.idproduction = ?1")
 public class Production implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -11,8 +11,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Usr.findAll", query="SELECT u FROM Usr u")
-@NamedQuery(name="Usr.checkCredentials", query = "SELECT u FROM Usr u WHERE u.email = ?1 and u.password = ?2")
-
+@NamedQuery(name="Usr.checkCredentials", query = "SELECT u FROM Usr u WHERE u.email = ?1 and u.password = md5(?2)")
 public class Usr implements Serializable {
 	private static final long serialVersionUID = 1L;
 
