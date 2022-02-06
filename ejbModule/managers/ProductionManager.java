@@ -18,11 +18,19 @@ import exceptions.CredentialsException;
 @LocalBean
 public class ProductionManager {
 
+
 	@PersistenceContext(unitName = "DreamEJB")
 	private EntityManager em;
+	
+	public void setEm(EntityManager em) {
+		this.em=em;
+	}
+	
 	public List<Production> getAllProduction(Field field) {
 		List<Production> pList = null;
 		pList = em.createNamedQuery("Production.getAll", Production.class).setParameter(1, field).getResultList();
+		if (pList.isEmpty())
+			pList=null;
 		return pList; 
 	}
 

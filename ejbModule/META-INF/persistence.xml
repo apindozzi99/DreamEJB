@@ -15,4 +15,27 @@
 		<class>model.Suggestionproduct</class>
 		<class>model.Usr</class>
 	</persistence-unit>
+	<persistence-unit name="DreamEJB-testing" transaction-type="RESOURCE_LOCAL">
+		<class>model.Agronomistreport</class>
+		<class>model.Farmer</class>
+		<class>model.Fertilizer</class>
+		<class>model.Field</class>
+		<class>model.Help</class>
+		<class>model.Incentive</class>
+		<class>model.Notification</class>
+		<class>model.Policymaker</class>
+		<class>model.Production</class>
+		<class>model.Ranking</class>
+		<class>model.Suggestionproduct</class>
+		<class>model.Usr</class>
+		 <validation-mode>NONE</validation-mode>
+		<properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dreamdb"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="diletta"/>
+            <!-- enable this property to see SQL and other logging -->
+            <!-- property name="eclipselink.logging.level" value="FINE"/ -->
+        </properties>
+	</persistence-unit>
 </persistence>

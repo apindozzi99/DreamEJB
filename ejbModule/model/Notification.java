@@ -23,14 +23,9 @@ public class Notification implements Serializable {
 	@JoinColumn(name="receiver")
 	private Farmer farmer;
 
-	//bi-directional many-to-one association to Policymaker
-	@ManyToOne
-	@JoinColumn(name="sender")
-	private Policymaker policymaker;
-
 	//bi-directional many-to-one association to Usr
 	@ManyToOne
-	@JoinColumn(name="receiver")
+	@JoinColumn(name="receiver", insertable=false, updatable=false)
 	private Usr usr;
 
 	public Notification() {
@@ -58,14 +53,6 @@ public class Notification implements Serializable {
 
 	public void setFarmer(Farmer farmer) {
 		this.farmer = farmer;
-	}
-
-	public Policymaker getPolicymaker() {
-		return this.policymaker;
-	}
-
-	public void setPolicymaker(Policymaker policymaker) {
-		this.policymaker = policymaker;
 	}
 
 	public Usr getUsr() {

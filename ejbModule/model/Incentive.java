@@ -11,6 +11,7 @@ import java.util.Date;
  */
 @Entity
 @NamedQuery(name="Incentive.findAll", query="SELECT i FROM Incentive i")
+@NamedQuery(name= "Incentive.checkUnique", query="SELECT i FROM Incentive i where i.production = ?1")
 public class Incentive implements Serializable {
 	private static final long serialVersionUID = 1L;
 

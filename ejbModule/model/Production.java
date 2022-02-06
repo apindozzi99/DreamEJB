@@ -14,6 +14,9 @@ import java.util.List;
 @NamedQuery(name="Production.findAll", query="SELECT p FROM Production p")
 @NamedQuery(name= "Production.getAll", query="SELECT p FROM Production p WHERE p.field= ?1")
 @NamedQuery(name= "Production.getProduction", query="SELECT p FROM Production p where p.idproduction = ?1")
+@NamedQuery(name="Production.getProductionBefore", query="SELECT p FROM Production p WHERE p.field= ?1 and p.collectedDate<=?2")
+@NamedQuery(name="Production.getProductionAfter", query="SELECT p FROM Production p WHERE p.field= ?1 and p.collectedDate>?2")
+
 public class Production implements Serializable {
 	private static final long serialVersionUID = 1L;
 

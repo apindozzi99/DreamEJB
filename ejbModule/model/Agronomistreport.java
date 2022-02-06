@@ -11,6 +11,7 @@ import java.util.Date;
  */
 @Entity
 @NamedQuery(name="Agronomistreport.findAll", query="SELECT a FROM Agronomistreport a")
+@NamedQuery(name="Agronomistreport.getReport", query = "SELECT a FROM Agronomistreport a WHERE a.idagronomistReport = ?1")
 public class Agronomistreport implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,14 +23,17 @@ public class Agronomistreport implements Serializable {
 
 	private String details;
 
-	private float field;
-
 	private String name;
 
 	//bi-directional many-to-one association to Farmer
 	@ManyToOne
 	@JoinColumn(name="farmeremail")
 	private Farmer farmer;
+
+	//bi-directional many-to-one association to Field
+	@ManyToOne
+	@JoinColumn(name="field")
+	private Field fieldBean;
 
 	public Agronomistreport() {
 	}
@@ -58,14 +62,6 @@ public class Agronomistreport implements Serializable {
 		this.details = details;
 	}
 
-	public float getField() {
-		return this.field;
-	}
-
-	public void setField(float field) {
-		this.field = field;
-	}
-
 	public String getName() {
 		return this.name;
 	}
@@ -80,6 +76,14 @@ public class Agronomistreport implements Serializable {
 
 	public void setFarmer(Farmer farmer) {
 		this.farmer = farmer;
+	}
+
+	public Field getFieldBean() {
+		return this.fieldBean;
+	}
+
+	public void setFieldBean(Field fieldBean) {
+		this.fieldBean = fieldBean;
 	}
 
 }

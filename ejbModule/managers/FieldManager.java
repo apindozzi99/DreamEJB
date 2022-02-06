@@ -21,6 +21,10 @@ public class FieldManager {
 	@PersistenceContext(unitName = "DreamEJB")
 	private EntityManager em;
 	
+	public void setEm(EntityManager em) {
+		this.em=em;
+	}
+	
 	public List<Field> getAllFields() {
 		List<Field> fList = null;
 		fList = em.createNamedQuery("Field.findAll", Field.class).getResultList();

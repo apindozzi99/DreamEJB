@@ -22,9 +22,15 @@ public class RankingManager {
 
 	@PersistenceContext(unitName = "DreamEJB")
 	private EntityManager em;
+	
+	public void setEm(EntityManager em) {
+		this.em=em;
+	}
+	
 	public List<Ranking> getRanking(String product) {
 		List<Ranking> rList = null;
 		rList = em.createNamedQuery("Ranking.getRanking", Ranking.class).setParameter(1, product).getResultList();
+		if (rList.isEmpty()) rList=null;
 		return rList; 
 	}
 	public List<String> getProductList(){
@@ -36,6 +42,7 @@ public class RankingManager {
 	public List<Ranking> getProductListDesc(String product){
 		List <Ranking> dList = null;
 		dList = em.createNamedQuery("Ranking.getRankingDesc", Ranking.class).setParameter(1, product).getResultList();
+		if (dList.isEmpty()) dList = null;
 		return dList;
 	}
 	
@@ -49,16 +56,31 @@ public class RankingManager {
 	}
 	
 	public boolean addNotification(Production production) {
-		Incentive inc = new Incentive();
-		inc.setAmount(1000);
-		Date todayDate = new Date();
-		inc.setDate(todayDate);
-		inc.setProduction(production);
-		em.persist(inc);
-		return true;
+		if (!this.checkIfAlreadyExists(production))
+		{
+			Incentive inc = new Incentive();
+			inc.setAmount(1000);
+			Date todayDate = new Date();
+			inc.setDate(todayDate);
+			inc.setProduction(production);
+			em.persist(inc);
+			Notification not = new Notification();
+			not.setFarmer(production.getField().getFarmer());
+			not.setText(production.getProduct());
+			em.persist(not);
+			System.out.println(inc.getIdincentive()+" "+inc.getAmount());
+			
+			return true;
+		}
+		else return false;
 	}
 	
 	public boolean sendHelp(Production production) {
-		return false;
+		Help help = new Help();
+		help.setFarmer(production.getField().getFarmer());
+		help.setField(production.getField());
+		help.setProblem("Problem with poduction of"+ production.getProduct());
+		em.persist(help);
+		return true;
 	}
 }

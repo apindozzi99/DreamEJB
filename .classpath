@@ -14,5 +14,17 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/mockito-core-4.3.1.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/mockito-junit-jupiter-4.3.1.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/apiguardian-api-1.1.2.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/byte-buddy-1.12.7.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/byte-buddy-agent-1.12.7.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/junit-jupiter-api-5.8.2.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/junit-platform-commons-1.8.2.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/objenesis-3.2.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/opentest4j-1.2.0.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/junit-jupiter-engine-5.8.2.jar"/>
+	<classpathentry kind="lib" path="ejbModule/META-INF/lib/junit-platform-engine-1.8.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -22,6 +22,10 @@ public class Field implements Serializable {
 
 	private float size;
 
+	//bi-directional many-to-one association to Agronomistreport
+	@OneToMany(mappedBy="fieldBean")
+	private List<Agronomistreport> agronomistreports;
+
 	//bi-directional many-to-one association to Farmer
 	@ManyToOne
 	@JoinColumn(name="farmeremail")
@@ -77,6 +81,28 @@ public class Field implements Serializable {
 
 	public void setSize(float size) {
 		this.size = size;
+	}
+
+	public List<Agronomistreport> getAgronomistreports() {
+		return this.agronomistreports;
+	}
+
+	public void setAgronomistreports(List<Agronomistreport> agronomistreports) {
+		this.agronomistreports = agronomistreports;
+	}
+
+	public Agronomistreport addAgronomistreport(Agronomistreport agronomistreport) {
+		getAgronomistreports().add(agronomistreport);
+		agronomistreport.setFieldBean(this);
+
+		return agronomistreport;
+	}
+
+	public Agronomistreport removeAgronomistreport(Agronomistreport agronomistreport) {
+		getAgronomistreports().remove(agronomistreport);
+		agronomistreport.setFieldBean(null);
+
+		return agronomistreport;
 	}
 
 	public Farmer getFarmer() {
