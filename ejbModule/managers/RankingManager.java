@@ -52,7 +52,7 @@ public class RankingManager {
 	
 	/*
 	 * 
-	 * Method to get the ranking in ascending order
+	 * Method to get all the product among the different Rankings
 	 * Return a List of ranking 
 	 * 
 	 */
