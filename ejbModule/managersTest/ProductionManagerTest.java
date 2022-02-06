@@ -45,43 +45,45 @@ import managers.*;
 import model.*;
 
 
-public class IncentiveManagerTest {
+public class ProductionManagerTest {
+
 	@InjectMocks
-	IncentiveManager manager;
+	 ProductionManager manager;
 	 
 	 EntityManager entityManager;
 	 
 	 @Mock
-	 private Incentive inc;
-	 
-	 @Mock
 	 private Farmer f;
-	 
-	 
 	 @Mock
-	 private Usr usr;
+	 private Field field;
 	 @Mock
-	 private Agronomistreport ar;
-	 
+	 private Field invalidfield;
 	 @Mock
 	 private Production prod;
 	 
 	 @Mock
-	 TypedQuery<Incentive> query;
+	 TypedQuery<Production> query;
 	
 
 	@Before
 	public void setUp() throws Exception {
 		entityManager = mock(EntityManager.class);
-		inc = new Incentive();
-		manager= new IncentiveManager();
+		manager= new ProductionManager();
 		manager.setEm(entityManager);
-		inc.setIdincentive(0);
-		inc.setAmount(0);
-		inc.setProduction(prod);
+		
 	    query = mock(TypedQuery.class);
 		when((query).setParameter(anyInt(), any())).thenReturn(query);
-	   
+		Date date = new Date();
+		prod = new Production();
+		prod.setAvgHumiditySoil(0);
+		prod.setAvgRainFall(0);
+		prod.setAvgWater(0);
+		prod.setCollectedAmount(0);
+		prod.setCollectedDate(date);
+		prod.setField(field);
+		prod.setIdproduction(0);
+		prod.setPlantedAmount(0);
+		prod.setPlantedDate(date);
 	}
 
 	@After
@@ -90,17 +92,27 @@ public class IncentiveManagerTest {
 	
 
 	@Test
-	public void getAllTest() throws NonUniqueResultException, CredentialsException, NamingException {
-		TypedQuery<Incentive> query = mock(TypedQuery.class);
-	     when(entityManager.createNamedQuery("Incentive.findAll", Incentive.class)).thenReturn(query);
-	     List<Incentive> incs = new LinkedList<Incentive>();
-	     when((query).getResultList()).thenReturn(incs);
-	     List<Incentive> incsChecked =manager.getAll();
-	     
-	    verify(entityManager).createNamedQuery("Incentive.findAll", Incentive.class);
+	public void getAllProductionTestWrongField() throws NonUniqueResultException, CredentialsException, NamingException {
+		List<Production> prods = new LinkedList<Production>();
+		when(entityManager.createNamedQuery("Production.getAll", Production.class)).thenReturn(query);
+        when(query.getResultList()).thenReturn(prods);
+        List<Production> prodsChecked = manager.getAllProduction(invalidfield);
+        verify(entityManager).createNamedQuery("Production.getAll", Production.class);
 	    verify(query).getResultList();
-		assertSame(incs, incsChecked);
+        assertNull(prodsChecked);
 	}
+	
+	@Test
+	public void getProduction() throws NonUniqueResultException, CredentialsException {
+		List<Production> prods = new LinkedList<Production>();
+		when(entityManager.createNamedQuery("Production.getProduction", Production.class)).thenReturn(query);
+        when(query.getResultList()).thenReturn(prods);
+        Production prodChecked = manager.getProduction(1);
+        verify(entityManager).createNamedQuery("Production.getProduction", Production.class);
+	    verify(query).getResultList();
+        assertNull(prodChecked);
+	}
+
 
 }
 

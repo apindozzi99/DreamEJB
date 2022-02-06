@@ -45,40 +45,27 @@ import managers.*;
 import model.*;
 
 
-public class IncentiveManagerTest {
+public class LoginManagerTest {
 	@InjectMocks
-	IncentiveManager manager;
+	LoginManager manager;
 	 
 	 EntityManager entityManager;
 	 
 	 @Mock
-	 private Incentive inc;
-	 
-	 @Mock
-	 private Farmer f;
-	 
-	 
-	 @Mock
 	 private Usr usr;
-	 @Mock
-	 private Agronomistreport ar;
 	 
 	 @Mock
-	 private Production prod;
-	 
-	 @Mock
-	 TypedQuery<Incentive> query;
+	 TypedQuery<Usr> query;
 	
 
 	@Before
 	public void setUp() throws Exception {
 		entityManager = mock(EntityManager.class);
-		inc = new Incentive();
-		manager= new IncentiveManager();
+		usr = new Usr();
+		manager= new LoginManager();
 		manager.setEm(entityManager);
-		inc.setIdincentive(0);
-		inc.setAmount(0);
-		inc.setProduction(prod);
+		usr.setEmail("test");
+		usr.setPassword("test");
 	    query = mock(TypedQuery.class);
 		when((query).setParameter(anyInt(), any())).thenReturn(query);
 	   
@@ -90,16 +77,25 @@ public class IncentiveManagerTest {
 	
 
 	@Test
-	public void getAllTest() throws NonUniqueResultException, CredentialsException, NamingException {
-		TypedQuery<Incentive> query = mock(TypedQuery.class);
-	     when(entityManager.createNamedQuery("Incentive.findAll", Incentive.class)).thenReturn(query);
-	     List<Incentive> incs = new LinkedList<Incentive>();
-	     when((query).getResultList()).thenReturn(incs);
-	     List<Incentive> incsChecked =manager.getAll();
-	     
-	    verify(entityManager).createNamedQuery("Incentive.findAll", Incentive.class);
+	public void checkLoginWrongEmail() throws NonUniqueResultException, CredentialsException {
+		List<Usr> usrs = new LinkedList<Usr>();
+		when(entityManager.createNamedQuery("Usr.checkCredentials", Usr.class)).thenReturn(query);
+        when(query.getResultList()).thenReturn(usrs);
+        Usr usrChecked = manager.checkCredentials("testInvalid", "test");
+        verify(entityManager).createNamedQuery("Usr.checkCredentials", Usr.class);
 	    verify(query).getResultList();
-		assertSame(incs, incsChecked);
+        assertNull(usrChecked);
+	}
+	
+	@Test
+	public void checkLoginWrongPasswrod() throws NonUniqueResultException, CredentialsException {
+		List<Usr> usrs = new LinkedList<Usr>();
+		when(entityManager.createNamedQuery("Usr.checkCredentials", Usr.class)).thenReturn(query);
+        when(query.getResultList()).thenReturn(usrs);
+        Usr usrChecked = manager.checkCredentials("test", "testInvalid");
+        verify(entityManager).createNamedQuery("Usr.checkCredentials", Usr.class);
+	    verify(query).getResultList();
+        assertNull(usrChecked);
 	}
 
 }

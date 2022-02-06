@@ -70,9 +70,6 @@ public class FieldManagerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		/*ejbContainer = EJBContainer.createEJBContainer();
-        System.out.println("Opening the container" );
-        ctx = ejbContainer.getContext();*/
 		entityManager = mock(EntityManager.class);
 		manager= new FieldManager();
 		manager.setEm(entityManager);
@@ -89,17 +86,11 @@ public class FieldManagerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		/*ejbContainer.close();
-        System.out.println("Closing the container" );*/
     }
 	
 
 	@Test
 	public void getAllTest() throws NonUniqueResultException, CredentialsException, NamingException {
-		/*LoginManager manager = (LoginManager) ejbContainer.getContext().lookup("java:global/LoginManager");
-		assertNotNull(manager);
-		Usr usr = manager.checkCredentials("6", "5");
-		assertNotNull(usr);*/
 		TypedQuery<Field> query = mock(TypedQuery.class);
 	     when(entityManager.createNamedQuery("Field.findAll", Field.class)).thenReturn( query);
 	     List<Field> fields = new LinkedList<Field>();

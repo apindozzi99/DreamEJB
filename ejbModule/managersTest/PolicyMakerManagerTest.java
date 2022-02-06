@@ -45,40 +45,33 @@ import managers.*;
 import model.*;
 
 
-public class IncentiveManagerTest {
+public class PolicyMakerManagerTest {
 	@InjectMocks
-	IncentiveManager manager;
+	PolicyMakerManager manager;
 	 
 	 EntityManager entityManager;
 	 
 	 @Mock
-	 private Incentive inc;
-	 
-	 @Mock
-	 private Farmer f;
-	 
-	 
-	 @Mock
 	 private Usr usr;
-	 @Mock
-	 private Agronomistreport ar;
 	 
 	 @Mock
-	 private Production prod;
+	 private Usr wrongUsr;
 	 
 	 @Mock
-	 TypedQuery<Incentive> query;
+	 Policymaker pm;
+	 
+	 @Mock
+	 TypedQuery<Policymaker> query;
 	
 
 	@Before
 	public void setUp() throws Exception {
 		entityManager = mock(EntityManager.class);
-		inc = new Incentive();
-		manager= new IncentiveManager();
+		pm = new Policymaker();
+		manager= new PolicyMakerManager();
 		manager.setEm(entityManager);
-		inc.setIdincentive(0);
-		inc.setAmount(0);
-		inc.setProduction(prod);
+		pm.setSecretCode(0);
+		pm.setUsr(usr);
 	    query = mock(TypedQuery.class);
 		when((query).setParameter(anyInt(), any())).thenReturn(query);
 	   
@@ -90,16 +83,14 @@ public class IncentiveManagerTest {
 	
 
 	@Test
-	public void getAllTest() throws NonUniqueResultException, CredentialsException, NamingException {
-		TypedQuery<Incentive> query = mock(TypedQuery.class);
-	     when(entityManager.createNamedQuery("Incentive.findAll", Incentive.class)).thenReturn(query);
-	     List<Incentive> incs = new LinkedList<Incentive>();
-	     when((query).getResultList()).thenReturn(incs);
-	     List<Incentive> incsChecked =manager.getAll();
-	     
-	    verify(entityManager).createNamedQuery("Incentive.findAll", Incentive.class);
+	public void getPolicyMakerTestWrongUsr() throws NonUniqueResultException, CredentialsException {
+		List<Policymaker> pms = new LinkedList<Policymaker>();
+		when(entityManager.createNamedQuery("Policymaker.IsPolicy", Policymaker.class)).thenReturn(query);
+        when(query.getResultList()).thenReturn(pms);
+        Policymaker pmChecked = manager.getPolicyMaker(wrongUsr);
+        verify(entityManager).createNamedQuery("Policymaker.IsPolicy", Policymaker.class);
 	    verify(query).getResultList();
-		assertSame(incs, incsChecked);
+        assertNull(pmChecked);
 	}
 
 }
