@@ -26,6 +26,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/*
+ * 
+ * Class which tests the RankingManager and the consistency with the model
+ * Test the connections between the other Manager
+ * 
+ */
+
 public class RankingManagerIntegrationtest {
 	
 	private static final int VALID_ID_PRODUCTION = 1;

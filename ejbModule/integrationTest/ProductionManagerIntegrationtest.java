@@ -26,6 +26,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/*
+ * 
+ * Class which tests the ProductionManager and the consistency with the model
+ * Test the connections between the other Manager
+ * 
+ */
 public class ProductionManagerIntegrationtest {
 	
 	private static final int VALID_ID = 1111;

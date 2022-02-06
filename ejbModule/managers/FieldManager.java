@@ -14,6 +14,12 @@ import javax.persistence.PersistenceException;
 import model.*;
 import exceptions.CredentialsException;
 
+/*
+ * 
+ * Class that takes all the fields, or a particular field
+ * It connects to the model to make requests to the database 
+ * 
+ */
 @Stateless
 @LocalBean
 public class FieldManager {
@@ -25,11 +31,24 @@ public class FieldManager {
 		this.em=em;
 	}
 	
+	/*
+	 * 
+	 * Method that takes all the existing field
+	 * Return a list of fields
+	 * 
+	 */
 	public List<Field> getAllFields() {
 		List<Field> fList = null;
 		fList = em.createNamedQuery("Field.findAll", Field.class).getResultList();
 		return fList; 
 	}
+	
+	/*
+	 * 
+	 * Method that finds a particular field depending on the id of the field that is location
+	 * Return a Field or null if the field doesn't exist
+	 * 
+	 */
 	
 	public Field getField(float location) throws CredentialsException, NonUniqueResultException {
     	List<Field> fList = null;

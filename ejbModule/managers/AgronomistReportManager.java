@@ -16,6 +16,14 @@ import exceptions.CredentialsException;
 
 @Stateless
 @LocalBean
+
+/*
+ * 
+ * Class dealing with productions
+ * It connects to the model to make requests to the database 
+ * 
+ */
+
 public class AgronomistReportManager {
 	
 	@PersistenceContext(unitName = "DreamEJB")
@@ -24,6 +32,12 @@ public class AgronomistReportManager {
 	public void setEm(EntityManager em) {
 		this.em=em;
 	}
+	/*
+	 * 
+	 * Method to get  all the existing report
+	 * Return a list of AgronomistReoport 
+	 * 
+	 */
 	
 	public List<Agronomistreport> getAllAgronomistReport(){
 		List<Agronomistreport> aList = null;
@@ -31,7 +45,13 @@ public class AgronomistReportManager {
 		return aList;
 	}
 	
-	
+	/*
+	 * 
+	 * Method to get an AgronomistReoport based on its id
+	 * Return an AgronomistReoport or null if it's null
+	 * 
+	 * 
+	 */
 	public Agronomistreport getDetail(int id) throws CredentialsException, NonUniqueResultException {
 		List<Agronomistreport> aList = null;
 		try {
@@ -47,6 +67,14 @@ public class AgronomistReportManager {
 		
     }
 	
+	/*
+	 * 
+	 * Method to get the score of a production before the arrivals of an agronomist
+	 * The inputs are the Field and the Date to find all the productions before the arrivals of the agronomist
+	 * The output is a List of production or null if the list is empty
+	 * 
+	 */
+	
 	public List<Production> getProductionBefore(Field field,Date date){
 		List<Production> pList = null;
 		pList = em.createNamedQuery("Production.getProductionBefore", Production.class).setParameter(1,field).setParameter(2, date).getResultList();
@@ -55,6 +83,13 @@ public class AgronomistReportManager {
 		return pList;
 	}
 	
+	/*
+	 * 
+	 * Method to get the score of a production after the arrivals of an agronomist
+	 * The inputs are the Field and the Date to find all the productions after the arrivals of the agronomist
+	 * The output is a List of production or null if the list is empty
+	 * 
+	 */
 	public List<Production> getProductionAfter(Field field,Date date){
 		List<Production> pList = null;
 		pList = em.createNamedQuery("Production.getProductionAfter", Production.class).setParameter(1,field).setParameter(2, date).getResultList();

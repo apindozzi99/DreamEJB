@@ -17,6 +17,12 @@ import exceptions.CredentialsException;
 import managers.*;
 import model.*;
 
+/*
+ * 
+ * Class which tests the LoginManager and the consistency with the model
+ * Test the connections between the other Manager
+ * 
+ */
 public class LoginManagerIntegrationtest {
 	
 		private static final String EMAIL = "TestUsr";

@@ -25,7 +25,12 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
+/*
+ * 
+ * Class which tests the AgronomistReport and the consistency with the model
+ * Test the connections between the other Manager
+ * 
+ */
 public class AgronomistReportManagerIntegrationtest {
 	
 	private static final int VALID_ID = 999;
@@ -134,11 +139,10 @@ public class AgronomistReportManagerIntegrationtest {
 	@Test
 	public void getProductionBeforeTestWrongField() throws NonUniqueResultException, CredentialsException {
 		 em.getTransaction().begin();
-	        INVALID_FIELD=em.find(Field.class, INVALID_LOCATION);
-	        em.getTransaction().commit();
-	       // List<Production> prodsNul[];
-		List<Production> prods = manager.getProductionBefore(INVALID_FIELD, VALID_DATE);
-		assertNull(prods);
+	     INVALID_FIELD=em.find(Field.class, INVALID_LOCATION);
+	     em.getTransaction().commit();
+		 List<Production> prods = manager.getProductionBefore(INVALID_FIELD, VALID_DATE);
+		 assertNull(prods);
 	}
 	
 	@Test

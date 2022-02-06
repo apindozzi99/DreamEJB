@@ -14,6 +14,13 @@ import javax.persistence.PersistenceException;
 import model.*;
 import exceptions.CredentialsException;
 
+/*
+ * 
+ * Class dealing with productions
+ * It connects to the model to make requests to the database 
+ * 
+ */
+
 @Stateless
 @LocalBean
 public class ProductionManager {
@@ -26,6 +33,13 @@ public class ProductionManager {
 		this.em=em;
 	}
 	
+	/*
+	 * 
+	 * Method to get all the production of a particular field
+	 * Return a list of a production or null if the list is empty
+	 * 
+	 */
+	
 	public List<Production> getAllProduction(Field field) {
 		List<Production> pList = null;
 		pList = em.createNamedQuery("Production.getAll", Production.class).setParameter(1, field).getResultList();
@@ -34,6 +48,13 @@ public class ProductionManager {
 		return pList; 
 	}
 
+	/*
+	 * 
+	 * Method to take a production based on its id 
+	 * Return a production or null if it's not exist
+	 * 
+	 */
+	
 	public Production getProduction(int idProduction) throws CredentialsException, NonUniqueResultException {
     	List<Production> pList = null;
 		try {

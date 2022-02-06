@@ -27,6 +27,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
+/*
+ * 
+ * Class which tests the IncentiveManager and the consistency with the model
+ * Test the connections between the other Manager
+ * 
+ */
+
 public class IncentiveManagerIntegrationtest {
 	private static final int VALID_ID = 9999;
 	private static final int VALID_ID_PROD = 1;

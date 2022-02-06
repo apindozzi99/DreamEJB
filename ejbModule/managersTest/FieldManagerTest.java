@@ -116,10 +116,10 @@ public class FieldManagerTest {
 		List<Field> fields = new LinkedList<Field>();
 		when(entityManager.createNamedQuery("Field.getField", Field.class)).thenReturn(query);
         when(query.getResultList()).thenReturn(fields);
-        verify(entityManager).createNamedQuery("Field.findAll", Field.class);
+        Field fieldChecked = manager.getField(2);
+        verify(entityManager).createNamedQuery("Field.getField", Field.class);
 	    verify(query).getResultList();
-       // Field fieldChecked = manager.getField(1);
-        //assertSame(fields.get(0), fieldChecked);
+        assertNull(fieldChecked);
 	}
 
 

@@ -18,6 +18,13 @@ import exceptions.CredentialsException;
 
 @Stateless
 @LocalBean
+
+/*
+ * 
+ * Check the login's credentials
+ * It connects to the model to make requests to the database 
+ * 
+ */
 public class LoginManager {
 
 	@PersistenceContext(unitName = "DreamEJB")
@@ -27,9 +34,14 @@ public class LoginManager {
 		this.em=em;
 	}
 	
+/*
+ * 
+ * Checks if exists an users with the credentials.
+ * Creates a query with the email end the encrypted password.
+ * Return a User or null if it's not right.
+ * 
+ */
 	public Usr checkCredentials(String email, String password) throws CredentialsException, NonUniqueResultException {
-    	/*Customer c = em.createNamedQuery("Customer.checkCredentials", Customer.class).setParameter(1, username).setParameter(2, password).getSingleResult();
-    	return c;*/
     	List<Usr> cList = null;
     	MessageDigest md = null;
 		try {
@@ -47,7 +59,7 @@ public class LoginManager {
 			cList = em.createNamedQuery("Usr.checkCredentials", Usr.class).setParameter(1, email).setParameter(2, sb.toString()).getResultList();
 			System.out.println("ciao");
 			} catch (PersistenceException e) {
-			throw new CredentialsException("Could not verify credentals");
+			throw new CredentialsException("Could not verify credentials");
 		}
 		if (cList.isEmpty())
 			return null;

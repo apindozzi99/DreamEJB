@@ -17,6 +17,12 @@ import org.junit.Test;
 import model.*;
 import exceptions.CredentialsException;
 
+/*
+ * 
+ * Class that takes all the incentive
+ * It connects to the model to make requests to the database 
+ * 
+ */
 @Stateless
 @LocalBean
 public class IncentiveManager {
@@ -27,6 +33,12 @@ public class IncentiveManager {
 	public void setEm(EntityManager em) {
 		this.em=em;
 	}
+	/*
+	 * 
+	 * Method to request all the Incentive in the database
+	 * Return a list of incentive
+	 * 
+	 */
 	
 	public List<Incentive> getAll(){
 		List<Incentive> iList = null;

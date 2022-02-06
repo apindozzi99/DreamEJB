@@ -14,6 +14,14 @@ import javax.persistence.PersistenceException;
 import model.*;
 import exceptions.CredentialsException;
 
+
+/*
+ * 
+ * PolicyMaker Manager controls if the user is a policy maker
+ * It connects to the model to make requests to the database 
+ * 
+ */
+
 @Stateless
 @LocalBean
 public class PolicyMakerManager {
@@ -24,7 +32,13 @@ public class PolicyMakerManager {
 	public void setEm(EntityManager em) {
 		this.em=em;
 	}
-	
+/*
+ * 
+ * Method that checks if the User is a policy maker 
+ * Pass a Usr to the query that return a list of policy maker 
+ * Return a policymaker otherwise  return null
+ * 
+ */
 	public Policymaker getPolicyMaker(Usr usr) throws CredentialsException {
 		List<Policymaker> pList = null;
 		try {

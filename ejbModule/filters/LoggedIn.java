@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/*
+ * 
+ * Class that connects with the Server and create a sessions for the single User
+ * 
+ */
 
 @WebFilter("/LoggedIn")
 public class LoggedIn implements Filter {

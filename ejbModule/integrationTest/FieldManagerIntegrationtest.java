@@ -25,6 +25,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/*
+ * 
+ * Class which tests the FieldManager and the consistency with the model
+ * Test the connections between the other Manager
+ *
+ */
+
 public class FieldManagerIntegrationtest {
 	
 	private static final float VALID_LOCATION = 00000;
